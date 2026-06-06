@@ -15,6 +15,7 @@ class Appointment(models.Model):
         PENDING   = "PENDING",   "Pending"       # just booked, awaiting staff review
         ACCEPTED = "ACCEPTED", "Accepted"
         REJECTED  = "REJECTED",  "Rejected"       # staff declined
+        RECEIVE = "RECEIVE", "Item has been received"
         DIAGNOSING = "DIAGNOSING", "Diagnosing the problem"
         REPAIRING = "REPAIRING", "Repairing the problem"
         PICKUP = "PICKUP", "Ready for pickup"
@@ -31,7 +32,7 @@ class Appointment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="customer")
     service = models.CharField(max_length=100, choices=ServiceChoice)
     address = models.TextField(blank=True)
-    description = models.TextField()
+    issue = models.TextField()
     
     payment_status = models.CharField(max_length=50, choices=PaymentStatus, default=PaymentStatus.PAYMENT_PENDING)
     
@@ -40,7 +41,7 @@ class Appointment(models.Model):
     status = models.CharField(max_length=50, choices=StatusChoice, default=StatusChoice.PENDING)
     rejection_reason = models.TextField(blank=True)
     
-    date = models.DateTimeField(null=True, help_text="the appointmend date")
+    date = models.DateTimeField(null=True, help_text="the appointment date")
     updated_at = models.DateTimeField(auto_now=True, null=True)
     
     
