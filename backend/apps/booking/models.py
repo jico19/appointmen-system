@@ -1,7 +1,7 @@
 from django.db import models
 import uuid
 from apps.core.models import User
-
+from django.core.exceptions import ValidationError
 
 
 class Appointment(models.Model):
@@ -66,7 +66,7 @@ class RepairLog(models.Model):
         return f"Log for {self.appointment} by {self.recorded_by}"
 
 class Notification(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4(), editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=100)
     recipient = models.ForeignKey(User, on_delete=models.CASCADE)
     is_read = models.BooleanField(default=False)

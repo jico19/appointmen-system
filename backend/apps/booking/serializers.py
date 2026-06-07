@@ -7,8 +7,8 @@ from . import models
 
 class AppointmentSerializers(serializers.ModelSerializer):
     
-    updated_at = serializers.SerializerMethodField()
-    date = serializers.SerializerMethodField()
+    # updated_at = serializers.SerializerMethodField()
+    # date = serializers.SerializerMethodField()
     assigned_staff_name = serializers.CharField(
         source = 'assigned_staff.username', read_only = True
     )
@@ -24,11 +24,11 @@ class AppointmentSerializers(serializers.ModelSerializer):
             'date': { 'write_only': True }
         }
         
-    def get_updated_at(self, obj):
-        return obj.updated_at.strftime('%B %d, %Y %I:%M %p')
+    # def get_updated_at(self, obj):
+    #     return obj.updated_at.strftime('%B %d, %Y %I:%M %p')
     
-    def get_date(self, obj):
-        return obj.date.strftime('%B %d, %Y %I:%M %p')
+    # def get_date(self, obj):
+    #     return obj.date.strftime('%B %d, %Y %I:%M %p')
 
 class RepairLogSerializer(serializers.ModelSerializer):
     
